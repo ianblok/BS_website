@@ -1,422 +1,395 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blokhuys Schilderwerken</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: '#6165FA',
-            'brand-dark': '#040670',
-            'brand-blue': '#217DE2',
-            'brand-light': '#CACCFD',
-            ink: '#181818',
-          },
-          fontFamily: {
-            display: ['"Playfair Display"', 'serif'],
-            body: ['Inter', 'sans-serif'],
-          },
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blokhuys Schilderwerken</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#6165FA',
+          'brand-dark': '#040670',
+          'brand-blue': '#217DE2',
+          'brand-light': '#CACCFD',
+          ink: '#181818',
+        },
+        fontFamily: {
+          display: ['"Playfair Display"', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
       }
     }
-  </script>
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-    /* Layered hero grain */
-    .hero-grain::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
+  .hero-grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
 
-    /* Gradient text */
-    .text-gradient {
-      background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+  .text-gradient {
+    background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    /* Smooth card shadow */
-    .card-shadow {
-      box-shadow:
-        0 2px 4px rgba(97,101,250,0.06),
-        0 8px 24px rgba(97,101,250,0.10),
-        0 20px 40px rgba(97,101,250,0.06);
-    }
+  .card-shadow {
+    box-shadow:
+      0 2px 4px rgba(97,101,250,0.06),
+      0 8px 24px rgba(97,101,250,0.10),
+      0 20px 40px rgba(97,101,250,0.06);
+  }
+  .card-shadow:hover {
+    box-shadow:
+      0 4px 8px rgba(97,101,250,0.10),
+      0 16px 40px rgba(97,101,250,0.16),
+      0 32px 64px rgba(97,101,250,0.10);
+  }
 
-    .card-shadow:hover {
-      box-shadow:
-        0 4px 8px rgba(97,101,250,0.10),
-        0 16px 40px rgba(97,101,250,0.16),
-        0 32px 64px rgba(97,101,250,0.10);
-    }
+  .btn-primary {
+    background: #6165FA;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(97,101,250,0.30);
+  }
+  .btn-primary:hover {
+    background: #4d52f8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(97,101,250,0.40);
+  }
+  .btn-primary:active { transform: translateY(0); box-shadow: 0 2px 6px rgba(97,101,250,0.25); }
+  .btn-primary:focus-visible { outline: 3px solid #CACCFD; outline-offset: 2px; }
 
-    /* Button transitions */
-    .btn-primary {
-      background: #6165FA;
-      color: white;
-      padding: 0.6rem 1.5rem;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.875rem;
-      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-      display: inline-block;
-      box-shadow: 0 2px 8px rgba(97,101,250,0.30);
-    }
-    .btn-primary:hover {
-      background: #4d52f8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(97,101,250,0.40);
-    }
-    .btn-primary:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 6px rgba(97,101,250,0.25);
-    }
-    .btn-primary:focus-visible {
-      outline: 3px solid #CACCFD;
-      outline-offset: 2px;
-    }
+  .btn-outline-white {
+    border: 2px solid white;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: background 0.2s ease, transform 0.15s ease;
+    display: inline-block;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.15); transform: translateY(-1px); }
+  .btn-outline-white:active { transform: translateY(0); }
+  .btn-outline-white:focus-visible { outline: 3px solid rgba(255,255,255,0.5); outline-offset: 2px; }
 
-    .btn-outline-white {
-      border: 2px solid white;
-      color: white;
-      padding: 0.6rem 1.5rem;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 0.875rem;
-      transition: background 0.2s ease, transform 0.15s ease;
-      display: inline-block;
-    }
-    .btn-outline-white:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateY(-1px);
-    }
-    .btn-outline-white:active { transform: translateY(0); }
-    .btn-outline-white:focus-visible { outline: 3px solid rgba(255,255,255,0.5); outline-offset: 2px; }
+  .nav-link {
+    color: #181818;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 2px;
+    background: #6165FA;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+  .nav-link:hover { color: #6165FA; }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .nav-link:focus-visible { outline: 2px solid #6165FA; outline-offset: 3px; border-radius: 2px; }
 
-    .nav-link {
-      color: #181818;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      transition: color 0.15s ease;
-      position: relative;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0; right: 0;
-      height: 2px;
-      background: #6165FA;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.2s ease;
-    }
-    .nav-link:hover { color: #6165FA; }
-    .nav-link:hover::after { transform: scaleX(1); }
-    .nav-link:focus-visible { outline: 2px solid #6165FA; outline-offset: 3px; border-radius: 2px; }
+  .service-card {
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-card:hover { transform: translateY(-4px); }
 
-    .service-card {
-      border-radius: 6px;
-      overflow: hidden;
-      background: white;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .service-card:hover { transform: translateY(-4px); }
-
-    /* Paint brush decorative blobs */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.12;
-      pointer-events: none;
-    }
-  </style>
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body class="text-ink bg-white">
 
-  <!-- ═══ NAVBAR ═══ -->
-  <header class="sticky top-0 z-50 bg-white border-b border-gray-100" style="box-shadow: 0 1px 0 rgba(0,0,0,0.06);">
-    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-2 shrink-0">
-        <img src="Brand_assets/logo.jpg" alt="Blokhuys Schilderwerken logo" class="h-8 w-auto" />
-        <span class="font-body font-600 text-sm text-ink leading-tight hidden sm:block">Blokhuys<br/>Schilderwerken</span>
-      </a>
+<!-- ═══ NAVBAR ═══ -->
+<header class="sticky top-0 z-50 bg-white border-b border-gray-100" style="box-shadow: 0 1px 0 rgba(0,0,0,0.06);">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
+    <a href="#" class="flex items-center gap-2 shrink-0">
+      <img src="Brand_assets/logo.jpg" alt="Blokhuys Schilderwerken logo" class="h-8 w-auto" />
+      <span class="font-body font-600 text-sm text-ink leading-tight hidden sm:block">Blokhuys<br/>Schilderwerken</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#over-ons" class="nav-link">Over ons</a>
+      <a href="#diensten" class="nav-link">Diensten</a>
+      <a href="#werk" class="nav-link">Recent werk</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <a href="tel:+31612345678" class="hidden md:flex items-center gap-2 text-sm font-semibold text-ink hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
+      </svg>
+      +31 6 12 34 56 78
+    </a>
+    <button class="md:hidden p-2 rounded focus-visible:outline-2 focus-visible:outline-brand" aria-label="Menu">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+</header>
 
-      <!-- Nav links -->
-      <nav class="hidden md:flex items-center gap-6">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#over-ons" class="nav-link">Over ons</a>
-        <a href="#diensten" class="nav-link">Diensten</a>
-        <a href="#werk" class="nav-link">Recent werk</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+<!-- ═══ HERO ═══ -->
+<section id="home" class="hero-grain relative overflow-hidden bg-white py-20 md:py-28">
+  <div class="blob w-96 h-96 bg-brand top-0 right-0 translate-x-1/2 -translate-y-1/4"></div>
+  <div class="blob w-72 h-72 bg-brand-blue bottom-0 left-0 -translate-x-1/3 translate-y-1/4"></div>
 
-      <!-- Phone -->
-      <a href="tel:+31612345678" class="hidden md:flex items-center gap-2 text-sm font-semibold text-ink hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
-        </svg>
-        +31 6 12 34 56 78
-      </a>
+  <!-- Real hero background image -->
+  <div class="absolute inset-0 -z-10 opacity-15 pointer-events-none">
+    <img src="https://static.wixstatic.com/media/cc3535e1884442a09f76695fd4ca4187.jpg/v1/fill/w_2122,h_1410,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/cc3535e1884442a09f76695fd4ca4187.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true" />
+  </div>
 
-      <!-- Mobile menu toggle -->
-      <button class="md:hidden p-2 rounded focus-visible:outline-2 focus-visible:outline-brand" aria-label="Menu">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-  </header>
+  <div class="relative max-w-3xl mx-auto px-6 text-center">
+    <h1 class="text-gradient font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style="letter-spacing: -0.03em;">
+      Welkom bij Blokhuys<br />Schilderwerken
+    </h1>
+    <a href="#diensten" class="btn-primary mb-8">Meer info</a>
+    <p class="mt-8 text-gray-600 text-base leading-7 max-w-2xl mx-auto">
+      Blokhuys Schilderwerken is een schildersbedrijf uit de gemeente Elst (Utrecht), werkzaam in onder andere Bunnik, Zeist en de Utrechtse Heuvelrug. Bij ons krijgt u altijd een uitstekende, eerlijke begeleiding. Als buitenschilders en onderhoud van uw woning houden wij de samenwerking op een transparante manier.
+      <br /><br />
+      Ons werk draait om precisie en duurzame kwaliteit. We gebruiken materialen voor schilderwerk dat jarenlang mee gaat, persoonlijk inzicht.
+    </p>
+  </div>
+</section>
 
-  <!-- ═══ HERO ═══ -->
-  <section id="home" class="hero-grain relative overflow-hidden bg-white py-20 md:py-28">
-    <!-- Decorative blobs -->
-    <div class="blob w-96 h-96 bg-brand top-0 right-0 translate-x-1/2 -translate-y-1/4"></div>
-    <div class="blob w-72 h-72 bg-brand-blue bottom-0 left-0 -translate-x-1/3 translate-y-1/4"></div>
-
-    <div class="relative max-w-3xl mx-auto px-6 text-center">
-      <h1 class="text-gradient font-display text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style="letter-spacing: -0.03em;">
-        Welkom bij Blokhuys<br />Schilderwerken
-      </h1>
-      <a href="#diensten" class="btn-primary mb-8">Meer info</a>
-      <p class="mt-8 text-gray-600 text-base leading-7 max-w-2xl mx-auto">
-        Blokhuys Schilderwerken is een schildersbedrijf uit de gemeente Elst (Utrecht), werkzaam in onder andere Bunnik, Zeist en de Utrechtse Heuvelrug. Bij ons krijgt u altijd een uitstekende, eerlijke begeleiding. Als buitenschilders en onderhoud van uw woning houden wij de samenwerking op een transparante manier.
-        <br /><br />
-        Ons werk draait om precisie en duurzame kwaliteit. We gebruiken materialen voor schilderwerk dat jarenlang mee gaat, persoonlijk inzicht.
+<!-- ═══ WAAR STAAN WE VOOR ═══ -->
+<section id="over-ons" class="relative overflow-hidden py-16 md:py-20" style="background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%);">
+  <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');"></div>
+  <div class="relative max-w-4xl mx-auto px-6">
+    <h2 class="text-white font-display text-3xl md:text-4xl font-bold mb-6" style="letter-spacing: -0.02em;">Waar staan we voor</h2>
+    <div class="grid md:grid-cols-2 gap-8 text-white/90 text-base leading-7">
+      <p>
+        Bij Blokhuys Schilderwerken zijn we er om u van dienst te zijn met professionele schilder- en onderhoudswerkzaamheden. Wij zorgen voor een topprestatie, zowel aan de buitenkant als de binnenkant van uw woning. Vakmanschap, kwaliteit en persoonlijke aandacht staan bij ons altijd centraal.
+      </p>
+      <p>
+        Schilderswerkzaamheden zijn niet alleen esthetisch maar ook beschermend en helpen de levensduur van uw woning te verlengen. Samen met u kijken wij naar de beste aanpak — of dat nu een complete schilderbeurt is of gericht onderhoud aan de meest kwetsbare plekken.
       </p>
     </div>
+  </div>
+</section>
 
-    <!-- Decorative paint brushstroke image -->
-    <div class="absolute top-8 right-8 opacity-10 pointer-events-none hidden lg:block">
-      <img src="Brand_assets/logo.jpg" alt="" class="w-48 h-auto" aria-hidden="true" />
+<!-- ═══ DIENSTEN ═══ -->
+<section id="diensten" class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-ink text-center mb-12" style="letter-spacing: -0.02em;">Professionele dienstverlening</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card: Buitenschilderwerk -->
+      <div class="service-card card-shadow">
+        <div class="relative overflow-hidden h-44">
+          <img src="https://static.wixstatic.com/media/91bbf6172899422ab9800d84e755af4e.jpg/v1/fill/w_620,h_564,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/pierre-chatel-innocenti-Lk-nu_hX6ms-unsplash%202.jpg" alt="Buitenschilderwerk" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display text-lg font-bold text-ink mb-2">Buitenschilderwerk</h3>
+          <p class="text-gray-500 text-sm leading-6 mb-4">Wij verzorgen al uw buitenschilderwerk vakkundig en met hoogwaardige materialen die uw woning jarenlang beschermen.</p>
+          <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
+        </div>
+      </div>
+
+      <!-- Card: Kleuradvies -->
+      <div class="service-card card-shadow">
+        <div class="relative overflow-hidden h-44">
+          <img src="https://static.wixstatic.com/media/5b47285f81f64b7098107be5d844e2cb.jpg/v1/fill/w_620,h_564,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/pierre-chatel-innocenti-Lk-nu_hX6ms-unsplash%202.jpg" alt="Kleuradvies" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display text-lg font-bold text-ink mb-2">Kleuradvies</h3>
+          <p class="text-gray-500 text-sm leading-6 mb-4">Niet zeker welke kleur bij uw woning past? Wij bieden persoonlijk kleuradvies om de perfecte combinatie te vinden.</p>
+          <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
+        </div>
+      </div>
+
+      <!-- Card: Onderhoud -->
+      <div class="service-card card-shadow">
+        <div class="relative overflow-hidden h-44">
+          <img src="https://static.wixstatic.com/media/e5ad843809554f6d95f3b57665a7e70d.jpg/v1/fill/w_620,h_564,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/pierre-chatel-innocenti-Lk-nu_hX6ms-unsplash%202.jpg" alt="Onderhoud" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display text-lg font-bold text-ink mb-2">Onderhoud</h3>
+          <p class="text-gray-500 text-sm leading-6 mb-4">Regelmatig onderhoud voorkomt grote schade. Wij inspecteren en behandelen hout, gevel en kozijnen op tijd.</p>
+          <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
+        </div>
+      </div>
+
+      <!-- Card: Gratis offerte -->
+      <div class="service-card card-shadow">
+        <div class="relative overflow-hidden h-44">
+          <img src="https://static.wixstatic.com/media/9e94c3243314391af0e112ab0e3dc4a2.jpg/v1/fill/w_620,h_564,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/pierre-chatel-innocenti-Lk-nu_hX6ms-unsplash%202.jpg" alt="Gratis offerte" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display text-lg font-bold text-ink mb-2">Gratis offerte</h3>
+          <p class="text-gray-500 text-sm leading-6 mb-4">Vrijblijvend en kosteloos een offerte ontvangen? Wij komen graag langs voor een persoonlijke beoordeling van uw woning.</p>
+          <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
+        </div>
+      </div>
+
+      <!-- Card: Inspectie -->
+      <div class="service-card card-shadow">
+        <div class="relative overflow-hidden h-44">
+          <img src="https://static.wixstatic.com/media/d44d0b_e57107eeccc84b87a6dbe95a46737c56~mv2.jpg/v1/fill/w_449,h_552,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/PHOTO-2019-04-26-09-39-14_edited.jpg" alt="Inspectie" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display text-lg font-bold text-ink mb-2">Inspectie</h3>
+          <p class="text-gray-500 text-sm leading-6 mb-4">Wij voeren een grondige inspectie uit om de staat van uw woning in kaart te brengen en gerichte aanbevelingen te doen.</p>
+          <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
+        </div>
+      </div>
+
+      <!-- Card: Binnenschilderwerk -->
+      <div class="service-card card-shadow">
+        <div class="relative overflow-hidden h-44">
+          <img src="https://static.wixstatic.com/media/d44d0b_b87f93bd15d44b7ebb9b878064318960~mv2.jpg/v1/fill/w_449,h_552,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/PHOTO-2019-04-26-09-32-46_edited.jpg" alt="Binnenschilderwerk" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-display text-lg font-bold text-ink mb-2">Binnenschilderwerk</h3>
+          <p class="text-gray-500 text-sm leading-6 mb-4">Van muren tot plafonds en kozijnen — wij verzorgen uw binnenschilderwerk netjes, snel en met oog voor detail.</p>
+          <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══ WAAR STAAN WE VOOR ═══ -->
-  <section id="over-ons" class="relative overflow-hidden py-16 md:py-20" style="background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%);">
-    <!-- Grain texture -->
-    <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');"></div>
-    <div class="relative max-w-4xl mx-auto px-6">
-      <h2 class="text-white font-display text-3xl md:text-4xl font-bold mb-6" style="letter-spacing: -0.02em;">Waar staan we voor</h2>
-      <div class="grid md:grid-cols-2 gap-8 text-white/90 text-base leading-7">
-        <p>
-          Bij Blokhuys Schilderwerken zijn we er om u van dienst te zijn met professionele schilder- en onderhoudswerkzaamheden. Wij zorgen voor een topprestatie, zowel aan de buitenkant als de binnenkant van uw woning. Vakmanschap, kwaliteit en persoonlijke aandacht staan bij ons altijd centraal.
+<!-- ═══ RECENT WERK ═══ -->
+<section id="werk" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-ink text-center mb-12" style="letter-spacing: -0.02em;">Recent werk</h2>
+
+    <div class="relative rounded-xl overflow-hidden" style="box-shadow: 0 8px 40px rgba(97,101,250,0.14), 0 2px 8px rgba(97,101,250,0.08);">
+      <img src="https://static.wixstatic.com/media/d44d0b_e57107eeccc84b87a6dbe95a46737c56~mv2.jpg/v1/fill/w_449,h_552,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/PHOTO-2019-04-26-09-39-14_edited.jpg" alt="Recent schilderproject" class="w-full h-72 md:h-96 object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+      <div class="absolute bottom-8 left-8 max-w-xs" style="background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%); border-radius: 6px; padding: 1.25rem; box-shadow: 0 8px 32px rgba(97,101,250,0.4);">
+        <p class="text-white text-sm leading-6 mb-4">
+          Wij zijn trots op onze recentste projecten in de omgeving van Elst en Utrecht. Bekijk hier een selectie van ons werk.
         </p>
-        <p>
-          Schilderswerkzaamheden zijn niet alleen esthetisch maar ook beschermend en helpen de levensduur van uw woning te verlengen. Samen met u kijken wij naar de beste aanpak — of dat nu een complete schilderbeurt is of gericht onderhoud aan de meest kwetsbare plekken.
+        <a href="#contact" class="btn-outline-white text-xs">Bekijk projecten</a>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-6">
+      <button class="w-2.5 h-2.5 rounded-full bg-brand focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2" aria-label="Slide 1"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-brand/50 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2" aria-label="Slide 2"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-brand/50 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2" aria-label="Slide 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA STRIP ═══ -->
+<section class="relative overflow-hidden py-14 md:py-16" style="background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%);">
+  <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');"></div>
+  <div class="relative max-w-4xl mx-auto px-6 text-center">
+    <p class="text-white text-lg md:text-xl leading-8 mb-8 max-w-2xl mx-auto">
+      Wilt u uw woning laten schilderen door een ervaren schilder in de omgeving van Elst (Utrecht)? Neem gerust contact op voor advies of een vrijblijvende offerte.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="#contact" class="btn-outline-white">Contact</a>
+      <a href="#contact" style="background: white; color: #6165FA; padding: 0.6rem 1.5rem; border-radius: 4px; font-weight: 600; font-size: 0.875rem; transition: background 0.2s ease, transform 0.15s ease; display: inline-block; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" onmouseover="this.style.background='#f0f0ff';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='white';this.style.transform='translateY(0)'">Bel ons nu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contact" class="bg-gray-950 text-white py-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="Brand_assets/logo.jpg" alt="Logo" class="h-8 w-auto rounded" />
+          <span class="font-body font-semibold text-sm text-white leading-tight">Blokhuys<br/>Schilderwerken</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-6">
+          Professioneel schildersbedrijf werkzaam in de regio Elst, Bunnik, Zeist en de Utrechtse Heuvelrug.
         </p>
       </div>
+
+      <!-- Contact info -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Contact</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 mt-0.5 shrink-0 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Elst, Utrecht
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-4 h-4 shrink-0 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+            <a href="tel:+31612345678" class="hover:text-brand transition-colors duration-150">+31 6 12 34 56 78</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="w-4 h-4 shrink-0 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="mailto:info@blokhuysschilderwerken.nl" class="hover:text-brand transition-colors duration-150">info@blokhuysschilderwerken.nl</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Navigatie</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="#home" class="hover:text-brand transition-colors duration-150">Home</a></li>
+          <li><a href="#over-ons" class="hover:text-brand transition-colors duration-150">Over ons</a></li>
+          <li><a href="#diensten" class="hover:text-brand transition-colors duration-150">Diensten</a></li>
+          <li><a href="#werk" class="hover:text-brand transition-colors duration-150">Recent werk</a></li>
+          <li><a href="#contact" class="hover:text-brand transition-colors duration-150">Contact</a></li>
+        </ul>
+      </div>
+
     </div>
-  </section>
 
-  <!-- ═══ DIENSTEN ═══ -->
-  <section id="diensten" class="py-16 md:py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-ink text-center mb-12" style="letter-spacing: -0.02em;">Professionele dienstverlening</h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Card: Buitenschilderwerk -->
-        <div class="service-card card-shadow">
-          <div class="relative overflow-hidden h-44">
-            <img src="https://placehold.co/480x320/d4d8f5/8890f5?text=Buitenschilderwerk" alt="Buitenschilderwerk" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-display text-lg font-bold text-ink mb-2">Buitenschilderwerk</h3>
-            <p class="text-gray-500 text-sm leading-6 mb-4">Wij verzorgen al uw buitenschilderwerk vakkundig en met hoogwaardige materialen die uw woning jarenlang beschermen.</p>
-            <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
-          </div>
-        </div>
-
-        <!-- Card: Kleuradvies -->
-        <div class="service-card card-shadow">
-          <div class="relative overflow-hidden h-44">
-            <img src="https://placehold.co/480x320/dce8f8/6099e0?text=Kleuradvies" alt="Kleuradvies" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-display text-lg font-bold text-ink mb-2">Kleuradvies</h3>
-            <p class="text-gray-500 text-sm leading-6 mb-4">Niet zeker welke kleur bij uw woning past? Wij bieden persoonlijk kleuradvies om de perfecte combinatie te vinden.</p>
-            <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
-          </div>
-        </div>
-
-        <!-- Card: Onderhoud -->
-        <div class="service-card card-shadow">
-          <div class="relative overflow-hidden h-44">
-            <img src="https://placehold.co/480x320/e8f0e8/6aaa6a?text=Onderhoud" alt="Onderhoud" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-display text-lg font-bold text-ink mb-2">Onderhoud</h3>
-            <p class="text-gray-500 text-sm leading-6 mb-4">Regelmatig onderhoud voorkomt grote schade. Wij inspecteren en behandelen hout, gevel en kozijnen op tijd.</p>
-            <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
-          </div>
-        </div>
-
-        <!-- Card: Gratis offerte -->
-        <div class="service-card card-shadow">
-          <div class="relative overflow-hidden h-44">
-            <img src="https://placehold.co/480x320/f5f0d8/c8a84a?text=Gratis+offerte" alt="Gratis offerte" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-display text-lg font-bold text-ink mb-2">Gratis offerte</h3>
-            <p class="text-gray-500 text-sm leading-6 mb-4">Vrijblijvend en kosteloos een offerte ontvangen? Wij komen graag langs voor een persoonlijke beoordeling van uw woning.</p>
-            <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
-          </div>
-        </div>
-
-        <!-- Card: Inspectie -->
-        <div class="service-card card-shadow">
-          <div class="relative overflow-hidden h-44">
-            <img src="https://placehold.co/480x320/f0e8f5/a06ac8?text=Inspectie" alt="Inspectie" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-display text-lg font-bold text-ink mb-2">Inspectie</h3>
-            <p class="text-gray-500 text-sm leading-6 mb-4">Wij voeren een grondige inspectie uit om de staat van uw woning in kaart te brengen en gerichte aanbevelingen te doen.</p>
-            <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
-          </div>
-        </div>
-
-        <!-- Card: Binnenschilderwerk -->
-        <div class="service-card card-shadow">
-          <div class="relative overflow-hidden h-44">
-            <img src="https://placehold.co/480x320/ebebf0/888898?text=Binnenschilderwerk" alt="Binnenschilderwerk" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          <div class="p-5">
-            <h3 class="font-display text-lg font-bold text-ink mb-2">Binnenschilderwerk</h3>
-            <p class="text-gray-500 text-sm leading-6 mb-4">Van muren tot plafonds en kozijnen — wij verzorgen uw binnenschilderwerk netjes, snel en met oog voor detail.</p>
-            <a href="#contact" class="btn-primary text-xs px-4 py-2">Meer info</a>
-          </div>
-        </div>
-
+    <!-- Bottom bar -->
+    <div class="pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-gray-500 text-xs">© 2024 Blokhuys Schilderwerken. Alle rechten voorbehouden.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" aria-label="Facebook" class="text-gray-500 hover:text-brand transition-colors duration-150 rounded">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073C24 5.445 18.627 0 12 0S0 5.445 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram" class="text-gray-500 hover:text-brand transition-colors duration-150 rounded">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
       </div>
     </div>
-  </section>
 
-  <!-- ═══ RECENT WERK ═══ -->
-  <section id="werk" class="py-16 md:py-24 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-ink text-center mb-12" style="letter-spacing: -0.02em;">Recent werk</h2>
-
-      <div class="relative rounded-xl overflow-hidden" style="box-shadow: 0 8px 40px rgba(97,101,250,0.14), 0 2px 8px rgba(97,101,250,0.08);">
-        <!-- Full-width project image -->
-        <img src="https://placehold.co/1200x500/3a3040/c0b8d0?text=" alt="Recent schilderproject" class="w-full h-72 md:h-96 object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
-
-        <!-- Overlay card -->
-        <div class="absolute bottom-8 left-8 max-w-xs" style="background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%); border-radius: 6px; padding: 1.25rem; box-shadow: 0 8px 32px rgba(97,101,250,0.4);">
-          <p class="text-white text-sm leading-6 mb-4">
-            Wij zijn trots op onze recentste projecten in de omgeving van Elst en Utrecht. Bekijk hier een selectie van ons werk.
-          </p>
-          <a href="#contact" class="btn-outline-white text-xs">Bekijk projecten</a>
-        </div>
-      </div>
-
-      <!-- Navigation dots -->
-      <div class="flex justify-center gap-2 mt-6">
-        <button class="w-2.5 h-2.5 rounded-full bg-brand focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2" aria-label="Slide 1"></button>
-        <button class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-brand/50 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2" aria-label="Slide 2"></button>
-        <button class="w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-brand/50 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2" aria-label="Slide 3"></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ CTA STRIP ═══ -->
-  <section class="relative overflow-hidden py-14 md:py-16" style="background: linear-gradient(135deg, #6165FA 0%, #217DE2 100%);">
-    <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22200%22 height=%22200%22 filter=%22url(%23n)%22 opacity=%221%22/%3E%3C/svg%3E');"></div>
-    <div class="relative max-w-4xl mx-auto px-6 text-center">
-      <p class="text-white text-lg md:text-xl leading-8 mb-8 max-w-2xl mx-auto">
-        Wilt u uw woning laten schilderen door een ervaren schilder in de omgeving van Elst (Utrecht)? Neem gerust contact op voor advies of een vrijblijvende offerte.
-      </p>
-      <div class="flex flex-wrap gap-4 justify-center">
-        <a href="#contact" class="btn-outline-white">Contact</a>
-        <a href="#contact" style="background: white; color: #6165FA; padding: 0.6rem 1.5rem; border-radius: 4px; font-weight: 600; font-size: 0.875rem; transition: background 0.2s ease, transform 0.15s ease; display: inline-block; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" onmouseover="this.style.background='#f0f0ff';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='white';this.style.transform='translateY(0)'">Bel ons nu</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ FOOTER ═══ -->
-  <footer id="contact" class="bg-gray-950 text-white py-12">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
-
-        <!-- Brand -->
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <img src="Brand_assets/logo.jpg" alt="Logo" class="h-8 w-auto rounded" />
-            <span class="font-body font-semibold text-sm text-white leading-tight">Blokhuys<br/>Schilderwerken</span>
-          </div>
-          <p class="text-gray-400 text-sm leading-6">
-            Professioneel schildersbedrijf werkzaam in de regio Elst, Bunnik, Zeist en de Utrechtse Heuvelrug.
-          </p>
-        </div>
-
-        <!-- Contact info -->
-        <div>
-          <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Contact</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
-            <li class="flex items-start gap-2">
-              <svg class="w-4 h-4 mt-0.5 shrink-0 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              Elst, Utrecht
-            </li>
-            <li class="flex items-center gap-2">
-              <svg class="w-4 h-4 shrink-0 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
-              <a href="tel:+31612345678" class="hover:text-brand transition-colors duration-150">+31 6 12 34 56 78</a>
-            </li>
-            <li class="flex items-center gap-2">
-              <svg class="w-4 h-4 shrink-0 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <a href="mailto:info@blokhuysschilderwerken.nl" class="hover:text-brand transition-colors duration-150">info@blokhuysschilderwerken.nl</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Links -->
-        <div>
-          <h4 class="text-white font-semibold text-sm uppercase tracking-widest mb-4">Navigatie</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
-            <li><a href="#home" class="hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">Home</a></li>
-            <li><a href="#over-ons" class="hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">Over ons</a></li>
-            <li><a href="#diensten" class="hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">Diensten</a></li>
-            <li><a href="#werk" class="hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">Recent werk</a></li>
-            <li><a href="#contact" class="hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-gray-500 text-xs">© 2024 Blokhuys Schilderwerken. Alle rechten voorbehouden.</p>
-        <!-- Social -->
-        <div class="flex items-center gap-4">
-          <a href="#" aria-label="Facebook" class="text-gray-500 hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073C24 5.445 18.627 0 12 0S0 5.445 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
-          </a>
-          <a href="#" aria-label="Instagram" class="text-gray-500 hover:text-brand transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-2 rounded">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </div>
+</footer>
 
 </body>
 </html>
